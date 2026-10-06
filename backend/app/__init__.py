@@ -1,0 +1,2 @@
+"""DermaTriage HTTP application."""
+

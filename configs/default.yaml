@@ -1,0 +1,28 @@
+seed: 42
+dataset:
+  metadata_csv: ml/data/raw/HAM10000_metadata.csv
+  image_dirs:
+    - ml/data/raw/HAM10000_images_part_1
+    - ml/data/raw/HAM10000_images_part_2
+  split_dir: ml/data/processed/splits
+  test_fraction: 0.20
+  validation_fraction_of_remainder: 0.125
+model:
+  architecture: efficientnet_b3
+  image_size: 300
+  dropout: 0.30
+  pretrained: true
+training:
+  batch_size: 16
+  head_epochs: 5
+  finetune_epochs: 15
+  head_learning_rate: 0.001
+  finetune_learning_rate: 0.00001
+  weight_decay: 0.0001
+  patience: 5
+  num_workers: 0
+  amp: true
+  class_weight_power: 0.5
+inference:
+  mc_passes: 30
+
