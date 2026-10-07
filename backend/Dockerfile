@@ -3,7 +3,8 @@ FROM python:3.13-slim
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    PORT=8000
+    PORT=8000 \
+    DERMATRIAGE_CHECKPOINT=/app/ml/models/best_model.pth
 
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 && \
@@ -14,7 +15,8 @@ RUN python -m pip install --upgrade pip && \
 
 COPY backend/app /app/backend/app
 COPY ml/src /app/ml/src
-RUN useradd --create-home --uid 10001 appuser && mkdir -p /app/ml/models && chown -R appuser:appuser /app
+COPY ml/models/best_model.pth /app/ml/models/best_model.pth
+RUN useradd --create-home --uid 10001 appuser && chown -R appuser:appuser /app
 USER appuser
 
 EXPOSE 8000
