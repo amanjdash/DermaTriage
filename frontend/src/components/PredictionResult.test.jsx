@@ -17,13 +17,54 @@ const sampleResult = {
   device: 'cpu',
 };
 
+const melanomaResult = {
+  prediction: 'mel',
+  deterministic_prediction: 'mel',
+  confidence: 0.89,
+  uncertainty: 0.35,
+  uncertainty_normalized: 0.18,
+  mc_passes: 30,
+  probabilities: { akiec: 0.01, bcc: 0.03, bkl: 0.02, df: 0.01, mel: 0.89, nv: 0.03, vasc: 0.01 },
+  class_probability_variance: {},
+  inference_time_ms: 750,
+  model_name: 'EfficientNet-B3',
+  model_version: 'test-model',
+  device: 'cpu',
+};
+
 describe('PredictionResult', () => {
-  it('renders the model result and uncertainty disclaimer', () => {
+  it('renders the human-readable predicted class, badges, and clinical guide for benign nevus', () => {
     render(<PredictionResult result={sampleResult} />);
-    expect(screen.getByRole('heading', { name: 'nv' })).toBeInTheDocument();
+
+    // Friendly class heading and code
+    expect(screen.getByRole('heading', { name: /Melanocytic Nevus/i })).toBeInTheDocument();
+    expect(screen.getByText('Benign (Harmless)')).toBeInTheDocument();
+    expect(screen.getByText('Code: nv')).toBeInTheDocument();
+
+    // Metrics
     expect(screen.getByText('76.0%')).toBeInTheDocument();
+    expect(screen.getByText(/Common Mole \(nv\)/i)).toBeInTheDocument();
     expect(screen.getByText(/not medical severity/i)).toBeInTheDocument();
+
+    // Educational Clinical Guide card
+    expect(screen.getByRole('heading', { name: /Understanding Common Mole/i })).toBeInTheDocument();
+    expect(screen.getByText(/clustered pigment-producing cells/i)).toBeInTheDocument();
+    expect(screen.getByText('Pathological Nature')).toBeInTheDocument();
+    expect(screen.getByText('Visual Characteristics')).toBeInTheDocument();
+    expect(screen.getByText('Recommended Next Steps')).toBeInTheDocument();
+
+    // Probability Chart
     expect(screen.getByRole('img', { name: /model probability distribution/i })).toBeInTheDocument();
   });
-});
 
+  it('renders high-risk malignant labels and urgent guidance when melanoma is predicted', () => {
+    render(<PredictionResult result={melanomaResult} />);
+
+    expect(screen.getByRole('heading', { name: /Melanoma \(Malignant Skin Cancer\)/i })).toBeInTheDocument();
+    expect(screen.getByText('Malignant (High Urgency)')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Understanding Melanoma/i })).toBeInTheDocument();
+    expect(screen.getByText('Critical / Urgent (Malignant)')).toBeInTheDocument();
+    expect(screen.getByText(/ABCDE criteria/i)).toBeInTheDocument();
+    expect(screen.getByText(/Urgent clinical evaluation required/i)).toBeInTheDocument();
+  });
+});

@@ -5,3 +5,156 @@
 @media(max-width:760px){.site-header{height:67px;padding:0 20px}.header-right{gap:13px}.header-link{display:none}.page-content{width:calc(100% - 36px)}.hero-section{padding:52px 0 25px;display:block}.hero-section h1{font-size:45px}.hero-copy>p{font-size:12px}.hero-aside{display:inline-flex;margin-top:19px;font-size:9px}.analysis-panel{grid-template-columns:1fr}.analyze-aside{padding:21px}.dropzone{min-height:200px}.results-grid{grid-template-columns:1fr}.probability-card{grid-column:auto}.about-grid{grid-template-columns:1fr}.page-footer{flex-direction:column}.empty-state{padding:18px;grid-template-columns:40px 1fr auto}.empty-state p{line-height:1.5}.uncertainty-value{font-size:40px}}
 @media(max-width:430px){.site-header{padding:0 15px}.page-content{width:calc(100% - 28px)}.api-status{font-size:9px}.brand-name{font-size:16px}.hero-section h1{font-size:40px;letter-spacing:-2px}.hero-aside{gap:7px;padding:10px 11px;font-size:8px}.upload-card{padding:18px 15px}.dropzone--has-file{flex-wrap:wrap}.image-preview{width:76px;height:76px}.file-details{max-width:calc(100% - 100px)}.text-button{margin-left:auto}.empty-index{display:none}.probability-chart{height:225px}}
 
+
+/* Badges and metadata */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1.3;
+}
+.badge--safe {
+  background: #e7f5ee;
+  color: #167a5e;
+  border: 1px solid #c0e5d4;
+}
+.badge--warning {
+  background: #fdf5e8;
+  color: #a46114;
+  border: 1px solid #f6d8b2;
+}
+.badge--danger {
+  background: #fdf2f0;
+  color: #b5382e;
+  border: 1px solid #f4c5bf;
+}
+.badge--neutral {
+  background: #f0f4f2;
+  color: #55675f;
+  border: 1px solid #d4ded9;
+}
+
+.code-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #edf3f0;
+  color: #5b6f65;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.class-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.class-title-group h3 {
+  font-size: 20px !important;
+  text-transform: none !important;
+  letter-spacing: -0.4px !important;
+  margin: 0 !important;
+  line-height: 1.25 !important;
+  color: #1a2f26;
+}
+
+.class-meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Clinical Guide Card */
+.lesion-info-card {
+  grid-column: 1 / -1;
+  padding: 22px 24px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+
+.lesion-overview-lead {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #3b5046;
+  margin: 6px 0 18px;
+}
+
+.lesion-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.lesion-detail-item {
+  padding: 14px 16px;
+  border-radius: 11px;
+  background: #f8faf9;
+  border: 1px solid #e7eee9;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lesion-detail-item--action {
+  background: #f2f8f5;
+  border-color: #d8e9df;
+}
+
+.detail-label {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #6d8076;
+}
+
+.lesion-detail-item p {
+  font-size: 11px;
+  line-height: 1.55;
+  color: #2e4439;
+  margin: 0;
+}
+
+.medical-disclaimer-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background: #fbf8f2;
+  border: 1px solid #fae8cb;
+  color: #7d5924;
+}
+
+.medical-disclaimer-banner .disclaimer-icon {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.medical-disclaimer-banner p {
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0;
+  color: #795722;
+}
+
+.medical-disclaimer-banner strong {
+  color: #5d3f11;
+}
+
+@media (max-width: 760px) {
+  .lesion-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
