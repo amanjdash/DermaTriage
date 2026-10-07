@@ -26,7 +26,7 @@ MAX_IMAGE_PIXELS = _get_int("DERMATRIAGE_MAX_IMAGE_PIXELS", "MIRRORMED_MAX_IMAGE
 CHECKPOINT_PATH = _get_str("DERMATRIAGE_CHECKPOINT", "MIRRORMED_CHECKPOINT", "ml/models/best_model.pth")
 CORS_ORIGINS = [
     item.strip()
-    for item in _get_str("DERMATRIAGE_CORS_ORIGINS", "MIRRORMED_CORS_ORIGINS", "http://localhost:5173").split(",")
+    for item in _get_str("DERMATRIAGE_CORS_ORIGINS", "MIRRORMED_CORS_ORIGINS", "*").split(",")
     if item.strip()
 ]
 
